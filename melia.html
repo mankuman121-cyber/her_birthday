@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Amaelia 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --warm: #fdf6ee;
+      --blush: #f2a7b0;
+      --terracotta: #c96a55;
+      --sage: #7a9e8e;
+      --ink: #2c1a10;
+      --gold: #d4963a;
+      --deep: #1a0e08;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    #petal-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(242,167,176,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 80%, rgba(201,106,85,0.12) 0%, transparent 55%),
+        var(--warm);
+    }
+
+    .hero-inner { position: relative; z-index: 2; }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: riseIn 1s 0.2s ease forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 12vw, 8rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      opacity: 0;
+      animation: riseIn 1s 0.5s ease forwards;
+    }
+
+    .hero h1 em {
+      display: block;
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .name-line {
+      margin-top: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 7vw, 5rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--gold);
+      opacity: 0;
+      animation: riseIn 1s 0.8s ease forwards;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 2rem auto;
+      opacity: 0;
+      animation: riseIn 1s 1.1s ease forwards;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--blush));
+    }
+    .divider::after { background: linear-gradient(to left, transparent, var(--blush)); }
+    .divider-heart { color: var(--terracotta); font-size: 0.9rem; }
+
+    .hero-quote {
+      max-width: 500px;
+      margin: 0 auto;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(44,26,16,0.6);
+      opacity: 0;
+      animation: riseIn 1s 1.4s ease forwards;
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(44,26,16,0.25);
+      animation: bob 2.5s ease-in-out infinite;
+    }
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--terracotta), transparent);
+    }
+    @keyframes bob {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* ── Things I love section ── */
+    .adore {
+      padding: 7rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .adore .section-label { color: var(--terracotta); }
+
+    .adore h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      margin-bottom: 3rem;
+    }
+
+    .adore-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .adore-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      text-align: left;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(44,26,16,0.08);
+      transition: padding-left 0.3s;
+    }
+    .adore-item:hover { padding-left: 0.5rem; }
+    .adore-item:last-child { border-bottom: none; }
+
+    .adore-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--blush);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      width: 1.5rem;
+    }
+
+    .adore-item p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(44,26,16,0.65);
+    }
+
+    .adore-item p strong {
+      display: block;
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── Love letter / envelope ── */
+    .message {
+      padding: 6rem 2rem 8rem;
+      background:
+        radial-gradient(ellipse at 15% 60%, rgba(242,167,176,0.2) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 30%, rgba(212,150,58,0.12) 0%, transparent 55%),
+        var(--warm);
+      text-align: center;
+    }
+
+    .message > .section-label { color: var(--terracotta); margin-bottom: 0.5rem; }
+    .message > h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 3.5rem;
+      color: var(--ink);
+    }
+
+    /* The outer scene — leaves room for letter to rise without shifting layout */
+    .envelope-scene {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      /* Extra top padding = space the letter will rise into */
+      padding-top: 0;
+      transition: padding-top 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .envelope-scene.opened {
+      padding-top: 340px; /* approx letter height - animates smoothly */
+    }
+
+    /* Wrapper keeps the envelope and risen letter stacked without overlap */
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    /* The letter sits above the envelope, hidden until opened */
+    .letter-paper {
+      position: absolute;
+      bottom: calc(100% - 10px); /* sits just above envelope */
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      width: 88%;
+      background: white;
+      border-radius: 6px 6px 4px 4px;
+      padding: 2.5rem 2.2rem 2rem;
+      text-align: left;
+      box-shadow: 0 -4px 30px rgba(44,26,16,0.12);
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.9s 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.3s 0.5s ease;
+    }
+
+    /* Fold lines on paper */
+    .letter-paper::before,
+    .letter-paper::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: rgba(44,26,16,0.06);
+    }
+    .letter-paper::before { top: 33.3%; }
+    .letter-paper::after  { top: 66.6%; }
+
+    /* Opened: letter slides up out of envelope */
+    .envelope-wrapper.opened .letter-paper {
+      transform: translateX(-50%) translateY(0%);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .letter-paper .date {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(44,26,16,0.28);
+      margin-bottom: 1.4rem;
+      text-align: right;
+    }
+
+    .letter-paper .greeting {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--terracotta);
+      margin-bottom: 1.4rem;
+    }
+
+    .letter-paper p {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: rgba(44,26,16,0.62);
+      margin-bottom: 1.1rem;
+    }
+
+    .letter-paper p.highlight {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(44,26,16,0.78);
+      border-left: 2px solid var(--blush);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .letter-paper .sign-off {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-top: 2rem;
+      display: block;
+    }
+
+    .letter-paper .sign-name {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(44,26,16,0.28);
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    /* The envelope body */
+    .envelope {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.618 / 1;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.3s;
+      z-index: 3;
+    }
+    .envelope:hover:not(.opened) { transform: scale(1.02); }
+
+    /* Envelope body (bottom layer) */
+    .env-body {
+      position: absolute;
+      inset: 0;
+      background: #f5ede0;
+      border-radius: 8px;
+      box-shadow:
+        0 8px 30px rgba(44,26,16,0.12),
+        0 2px 8px rgba(44,26,16,0.08);
+      overflow: hidden;
+    }
+
+    /* Bottom V fold lines */
+    .env-body::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 55%;
+      background: linear-gradient(135deg, #ede0cc 50%, transparent 50%),
+                  linear-gradient(225deg, #ede0cc 50%, transparent 50%);
+      background-size: 50% 100%;
+      background-position: left, right;
+      background-repeat: no-repeat;
+    }
+
+    /* Left flap */
+    .env-body::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 50%;
+      background: linear-gradient(to bottom right, #eee2d2, transparent 60%);
+      clip-path: polygon(0 0, 0 100%, 100% 50%);
+    }
+
+    /* Right flap overlay */
+    .env-right-flap {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 50%;
+      background: linear-gradient(to bottom left, #ede0cc, transparent 60%);
+      clip-path: polygon(100% 0, 100% 100%, 0 50%);
+    }
+
+    /* Top flap — the one that opens */
+    .env-top-flap {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 55%;
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+    }
+
+    .env-top-flap-face {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #f9f0e3 30%, #eddfc8 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 95%);
+      backface-visibility: hidden;
+      box-shadow: 0 4px 12px rgba(44,26,16,0.08);
+    }
+
+    /* Wax seal */
+    .wax-seal {
+      position: absolute;
+      top: 36%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 52px;
+      height: 52px;
+      background: radial-gradient(circle at 35% 35%, #e07060, var(--terracotta) 60%, #a04030);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      box-shadow: 0 3px 12px rgba(201,106,85,0.4), inset 0 1px 2px rgba(255,255,255,0.2);
+      z-index: 20;
+      transition: transform 0.4s, opacity 0.4s;
+      cursor: pointer;
+    }
+    .wax-seal:hover { transform: translateX(-50%) scale(1.08); }
+
+    .open-hint {
+      margin-top: 1.2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(44,26,16,0.35);
+      animation: pulse 2.5s ease-in-out infinite;
+      transition: opacity 0.4s;
+    }
+    @keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 0.7; } }
+
+    /* opened state — flap folds back */
+    .envelope.opened .env-top-flap {
+      transform: rotateX(-180deg);
+    }
+    .envelope.opened .wax-seal {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.5);
+      pointer-events: none;
+    }
+
+    footer {
+      background: var(--deep);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      color: rgba(253,246,238,0.15);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    footer span { color: var(--blush); opacity: 0.6; }
+  </style>
+</head>
+<body>
+
+<canvas id="petal-canvas"></canvas>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">For the one who has my whole heart</p>
+    <h1>Happy <em>Birthday,</em></h1>
+    <p class="name-line">Amaelia</p>
+    <div class="divider"><span class="divider-heart">♥</span></div>
+    <p class="hero-quote">
+      You came into my life and rearranged everything — quietly, beautifully, permanently. Today is yours, my love.
+    </p>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<!-- Things I love about you -->
+<section class="adore">
+  <p class="section-label">From someone who pays attention</p>
+  <h2>What I love about you</h2>
+  <div class="adore-list">
+    <div class="adore-item">
+      <span class="num">i.</span>
+      <p>
+        <strong>The way you love</strong>
+        You don't show it to them, but every time we spend together I can feel it, in your voice and in your laugh.
+      </p>
+    </div>
+    <div class="adore-item">
+      <span class="num">ii.</span>
+      <p>
+        <strong>The way you try to be the best</strong>
+        The way you keep communicating, even if you don't like it. I love that you are brave enough to keep trying to be better, for yourself and for us. It means the world to me.
+      </p>
+    </div>
+    <div class="adore-item">
+      <span class="num">iii.</span>
+      <p>
+        <strong>How soft you are when it's just us</strong>
+        The version of you that only comes out in quiet moments — that's the one I'm most grateful to know.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Love Letter -->
+<section class="message">
+  <p class="section-label">A letter, sealed with love</p>
+  <h2>For your eyes only</h2>
+
+  <div class="envelope-scene" id="envelopeScene">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+
+      <!-- The letter — sits above the envelope, rises out on open -->
+      <div class="letter-paper">
+        <p class="date">Your birthday · 2025</p>
+        <p class="greeting">My dearest Amaelia,</p>
+        <p>
+          I've been thinking about what to say, and the truth is — there aren't quite enough words. But I'll try anyway, because you deserve to know.
+        </p>
+        <p class="highlight">
+          Loving you is the easiest thing I've ever done. And the most important.
+        </p>
+        <p>
+          This past year, I've watched you be brave when it was hard, gentle when you were tired, and radiant when you didn't even know anyone was looking. I always noticed.
+        </p>
+        <p>
+          On your birthday, I don't just want to celebrate the day you were born — I want to celebrate every day since, every ordinary Tuesday and late night and quiet morning that has had you in it. Because those are the days that matter to me most.
+        </p>
+        <p>
+          Happy birthday, my love. I hope this year gives you back even a fraction of what you give to the world — and to me.
+        </p>
+        <span class="sign-off">Yours, completely,</span>
+        <span class="sign-name">Eman Gundut</span>
+      </div>
+
+      <!-- The envelope -->
+      <div class="envelope" id="envelope">
+        <div class="env-body">
+          <div class="env-right-flap"></div>
+        </div>
+        <div class="env-top-flap">
+          <div class="env-top-flap-face"></div>
+        </div>
+        <div class="wax-seal" id="waxSeal">♥</div>
+      </div>
+
+    </div>
+    <p class="open-hint" id="openHint">tap to open ♥</p>
+  </div>
+</section>
+
+<footer>
+  Made with <span>♥</span> for Amaelia · 2025
+</footer>
+
+<script>
+  const envelope = document.getElementById('envelope');
+  const wrapper = document.getElementById('envelopeWrapper');
+  const scene = document.getElementById('envelopeScene');
+  const hint = document.getElementById('openHint');
+
+  envelope.addEventListener('click', () => {
+    if (!envelope.classList.contains('opened')) {
+      envelope.classList.add('opened');
+      wrapper.classList.add('opened');
+      scene.classList.add('opened');
+      hint.style.opacity = '0';
+    }
+  });
+
+  // Canvas petals
+  const canvas = document.getElementById('petal-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const colors = ['#f2a7b0','#e8c4c0','#c96a55','#f5d0c8','#d4a0a8'];
+  const petals = Array.from({ length: 28 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight - window.innerHeight,
+    r: Math.random() * 5 + 2,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    speed: Math.random() * 0.5 + 0.15,
+    drift: (Math.random() - 0.5) * 0.4,
+    angle: Math.random() * Math.PI * 2,
+    spin: (Math.random() - 0.5) * 0.012,
+    opacity: Math.random() * 0.25 + 0.08,
+    wobble: Math.random() * Math.PI * 2,
+    wobbleSpeed: Math.random() * 0.018 + 0.004,
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    petals.forEach(p => {
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.r, p.r * 1.7, 0, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      ctx.restore();
+      p.y += p.speed;
+      p.wobble += p.wobbleSpeed;
+      p.x += p.drift + Math.sin(p.wobble) * 0.35;
+      p.angle += p.spin;
+      if (p.y > canvas.height + 20) {
+        p.y = -20;
+        p.x = Math.random() * canvas.width;
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+</body>
+</html>
